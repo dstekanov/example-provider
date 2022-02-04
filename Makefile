@@ -44,6 +44,8 @@ fake_ci_webhook:
 
 test_compose: .env
 	docker-compose down
+	export PACT_BROKER_BASE_URL=${PACT_BROKER_BASE_URL}
+	export PACT_BROKER_TOKEN=${PACT_BROKER_TOKEN}
 	docker-compose up --exit-code-from run-test
 	docker-compose down
 
