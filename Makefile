@@ -46,6 +46,7 @@ test_compose: .env
 	docker-compose down
 	echo "PACT_BROKER_BASE_URL=${PACT_BROKER_BASE_URL}" >> .env
 	echo "PACT_BROKER_TOKEN=${PACT_BROKER_TOKEN}" >> .env
+	echo "PACT_BROKER_PUBLISH_VERIFICATION_RESULTS=${PACT_BROKER_PUBLISH_VERIFICATION_RESULTS}" >> .env
 	docker-compose up --exit-code-from run-test
 	docker-compose down
 
