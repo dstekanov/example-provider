@@ -42,7 +42,7 @@ fake_ci_webhook:
 ## Build/test tasks
 ## =====================
 
-test_compose: .env
+test_compose:
 	docker-compose down
 	echo "PACT_BROKER_BASE_URL=${PACT_BROKER_BASE_URL}" >> .env
 	echo "PACT_BROKER_TOKEN=${PACT_BROKER_TOKEN}" >> .env
