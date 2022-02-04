@@ -2,8 +2,6 @@ version: '3.8'
 
 services:
   run-test:
-    environment:
-      PACT_BROKER_BASE_URL: ${PACT_BROKER_BASE_URL}
     build:
       context: .
     ports:
