@@ -16,7 +16,7 @@ all: test
 ## CI tasks
 ## ====================
 
-ci: test can_i_deploy $(DEPLOY_TARGET)
+ci: test_compose can_i_deploy $(DEPLOY_TARGET)
 
 # Run the ci target from a developer machine with the environment variables
 # set as if it was on Github Actions.
@@ -33,14 +33,19 @@ ci_webhook: .env
 
 fake_ci_webhook:
 	CI=true \
-	GIT_COMMIT=`git rev-parse --short HEAD`+`date +%s` \
-	GIT_BRANCH=`git rev-parse --abbrev-ref HEAD` \
+	GIT_COMMIT=`git rev-parse HEAD` \
+	GIT_BRANCH=`git name-rev --name-only HEAD` \
 	PACT_BROKER_PUBLISH_VERIFICATION_RESULTS=true \
 	make ci_webhook
 
 ## =====================
 ## Build/test tasks
 ## =====================
+
+test_compose: .env
+	docker-compose down
+	docker-compose up --exit-code-from run-test
+	docker-compose down
 
 test: .env
 	npm run test

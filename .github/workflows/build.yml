@@ -16,13 +16,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2-beta
-        with:
-          node-version: '12'
-      - name: Install
-        run: npm i
       - name: Test
-        run: GIT_BRANCH=${GITHUB_REF:11} make test
+        run: GIT_BRANCH=${GITHUB_REF:11} make test_compose
+      - name: Cleanup
+        if: always()
+        run: docker-compose down
 
   # Runs on branches as well, so we know the status of our PRs
   can-i-deploy:
