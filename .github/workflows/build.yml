@@ -17,7 +17,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Test
-        run: GIT_BRANCH=${GITHUB_REF:11} make test_compose
+#        run: GIT_BRANCH=${GITHUB_REF:11} make test_compose
+        run: docker-compose run run-test make test
       - name: Cleanup
         if: always()
         run: docker-compose down
