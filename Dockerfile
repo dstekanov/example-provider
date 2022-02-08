@@ -13,4 +13,4 @@ COPY package*.json /app/
 RUN npm install
 COPY . /app/
 
-#RUN npm run test
+RUN npm run test
