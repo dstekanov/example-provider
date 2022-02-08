@@ -2,6 +2,13 @@ version: '3.8'
 
 services:
   run-test:
+    environment:
+      PACT_BROKER_BASE_URL: ${PACT_BROKER_BASE_URL}
+      PACT_BROKER_TOKEN: ${PACT_BROKER_TOKEN}
+      PACT_BROKER_PUBLISH_VERIFICATION_RESULTS: ${PACT_BROKER_PUBLISH_VERIFICATION_RESULTS}
+      PACT_URL: ${PACT_URL}
+      GIT_COMMIT: ${GIT_COMMIT}
+      GIT_BRANCH: ${GIT_BRANCH}
     build:
       context: .
     ports:
